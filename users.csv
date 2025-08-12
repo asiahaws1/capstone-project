@@ -1,0 +1,5 @@
+user_id,first_name,last_name,competency name,score,date_taken
+5,Gary,Field,Data Types,2,08/13/25
+5,Gary,Field,Variables,2,08/06/25
+5,Gary,Field,Lists,1,07/15/25
+5,Gary,Field,Exception Handling,3,05/20/25
