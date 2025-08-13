@@ -30,12 +30,13 @@ User:
 - [Q]uit
 
 ## If logged in with the manager credentials you can view the manager menu which has these options. Each entry then goes to a submenu with the actions listed.
-[V]iew all users in a list, View Report For All Users and Competency Levels, Search For Users, View a Report of All Users and Their Cometency Levels For a Competency, View a List of Assessments For a Given User
-[A]dd a User, Competency, New Assessment To a Competency, or an Assessment Result for a User
-[E]dit or Deactivate User, Edit a Competency, Edit an Assessment, Edit An Assessment Result
-[D]elete An Assessment Result
-[C]SV Actions
-[Q]uit
+- [V]iew all users in a list, View Report For All Users and Competency Levels, Search For Users, View a Report of All Users and Their Cometency Levels For a Competency,
+View a List of Assessments For a Given User
+- [A]dd a User, Competency, New Assessment To a Competency, or an Assessment Result for a User
+- [E]dit or Deactivate User, Edit a Competency, Edit an Assessment, Edit An Assessment Result
+- [D]elete An Assessment Result
+- [C]SV Actions
+- [Q]uit
 
 
 
