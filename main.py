@@ -1,5 +1,5 @@
 import sqlite3
-import bcrypt
+import bcrypt # type: ignore
 from datetime import datetime
 import csv
 
@@ -489,7 +489,13 @@ def user_competency():
     
     user_id = input("Please enter the User ID you would like a competency report for: ")
     
-    users = cursor.execute("SELECT u.user_id, u.first_name, u.last_name, c.name, ar.score, MAX(ar.date_taken) FROM Users u LEFT OUTER JOIN AssessmentResults ar ON ar.user_id = u.user_id LEFT OUTER JOIN Assessments a ON ar.assessment_id = a.assessment_id LEFT OUTER JOIN Competencies c ON a.competency_id = c.competency_id WHERE u.user_id = ? GROUP BY c.competency_id", (user_id,)).fetchall()
+    users = cursor.execute("SELECT c.competency_id, c.name AS competency_name, ar.score AS latest_score, MAX(ar.date_taken) AS last_taken FROM Competencies c LEFT JOIN Assessments a ON a.competency_id = c.competency_id LEFT JOIN AssessmentResults ar ON a.assessment_id = ar.assessment_id AND ar.user_id = ? GROUP BY c.competency_id", (user_id,)).fetchall()
+   
+    total = 0
+    
+    for user in users:
+        total += user[2] or 0
+        
     
     if users == []:
             result_input = input("No results found. Press Enter To Search Again or (E) To Exit\n")
@@ -502,12 +508,10 @@ def user_competency():
     
     else:            
         print("~~~ Competency Results ~~~\n")
-        print(f'{"user_id":<9} {"first_name":<12} {"last_name":<12} {"competency_name":<20} {"score":<9} {"date_taken":<9}')
+        print(f'Average Competency Score is: {total / len(users):.2f}')
+        print(f'{"competency_name":<20} {"competency_name":<30} {"score":<12}  {"date_taken":<9}')
         for user in users:
-            if None in user:
-                print("No results found. Returning to Menu.")
-                continue 
-            print(f"{user[0]:<9} {user[1]:<12} {user[2]:<12} {user[3]:<20} {user[4]:<9} {user[5]:<9} ")
+            print(f"{user[0]:<20} {user[1]:<30} {user[2] or '':<12} {user[3] or '':<20} ")
         
     # if users == []:
     #     print("No results found.")
